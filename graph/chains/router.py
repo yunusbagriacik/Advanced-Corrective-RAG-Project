@@ -1,4 +1,4 @@
-from typing import Literal
+from typing import Literal #verdiğimiz yapının herhangi birini seçme özelliği için import edildi.
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.pydantic_v1 import BaseModel, Field
@@ -9,7 +9,7 @@ class RouteQuery(BaseModel):
     """Route a user query to the most relevant datasource."""
 
     datasource: Literal["vectorstore", "websearch"] = Field(
-        ...,
+        ..., #üç nokta konulmasının sebebi ya vectorstore ya da websearch almak zorundasın demek.
         description="Given a user question choose to route it to web search or a vectorstore.",
     )
 
