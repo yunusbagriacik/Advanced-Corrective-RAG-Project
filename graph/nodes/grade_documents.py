@@ -1,3 +1,4 @@
+#Bu node, retrieve edilen dokümanları filtreler.
 from typing import Any, Dict
 
 from graph.chains.retrieval_grader import retrieval_grader

@@ -1,3 +1,6 @@
+#Bu dosya üretilen cevabın dokümanlara dayanıp dayanmadığını kontrol eder.
+#Cevap gerçekten verilen documents içinden mi çıktı? Yoksa LLM kafadan mı uydurdu?
+
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.pydantic_v1 import BaseModel, Field
 from langchain_core.runnables import RunnableSequence
@@ -5,7 +8,7 @@ from langchain_openai import ChatOpenAI
 
 llm = ChatOpenAI(temperature=0) #yaratıcı olmasını istemediğimiz için 0 verdik.
 
-
+#yes → cevap dokümanlara dayanıyor. no → hallucination olabilir
 class GradeHallucinations(BaseModel):
     """Binary score for hallucination present in generation answer."""
 
@@ -26,3 +29,15 @@ hallucination_prompt = ChatPromptTemplate.from_messages(
 )
 
 hallucination_grader: RunnableSequence = hallucination_prompt | structured_llm_grader
+
+
+"""
+chain:
+documents + generation
+↓
+prompt
+↓
+LLM grader
+↓
+GradeHallucinations(binary_score=True/False)
+"""

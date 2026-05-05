@@ -1,5 +1,5 @@
-from typing import List, TypedDict
-
+#Bu dosya graph boyunca taşınacak state yapısını tanımlar.
+from typing import List, TypedDict #TypedDict, dictionary’nin hangi key’lere sahip olacağını belirtmek için kullanılır.
 
 class GraphState(TypedDict):
     """

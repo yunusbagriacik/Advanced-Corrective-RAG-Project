@@ -1,9 +1,12 @@
+#bu dosyada cevap kullanıcının sorduğu şeyi çözüyor mu? sorusu kontrol edilir.
+
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.pydantic_v1 import BaseModel, Field
 from langchain_core.runnables import RunnableSequence
 from langchain_openai import ChatOpenAI
 
-
+#True → cevap soruyu karşılıyor
+#False → cevap yetersiz
 class GradeAnswer(BaseModel):
 
     binary_score: bool = Field(
@@ -24,3 +27,14 @@ answer_prompt = ChatPromptTemplate.from_messages(
 )
 
 answer_grader: RunnableSequence = answer_prompt | structured_llm_grader
+
+"""
+chain:
+question + generation
+↓
+prompt
+↓
+LLM grader
+↓
+GradeAnswer(binary_score=True/False)
+"""

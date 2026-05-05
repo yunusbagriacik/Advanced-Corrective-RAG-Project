@@ -21,3 +21,14 @@ def web_search(state: GraphState) -> Dict[str, Any]:
     else:
         documents = [web_results]
     return {"documents": documents, "question": question}
+
+
+"""
+Soruyu web’de ara
+↓
+Web sonuçlarını Document formatına çevir
+↓
+Mevcut documents listesine ekle
+↓
+State’i döndür
+"""
